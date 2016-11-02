@@ -1,0 +1,13 @@
+{
+  "name": "cluttered-square",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "async-to-gen src/server.js > index.js"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "async-to-gen": "^1.1.4"
+  }
+}
