@@ -1,9 +1,10 @@
 {
   "name": "cluttered-square",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "build": "async-to-gen src/server.js > index.js"
+    "build": "async-to-gen src/server.js > index.js",
+    "start": "node index.js"
   },
   "license": "MIT",
   "dependencies": {},
