@@ -6,20 +6,25 @@ const contentMaker = () => {
   })
 }
 
-const pinger = () => {
+// pinger :: IncomingMessage -> Promise String
+const pinger = (request) => {
   return new Promise((resolve, reject) => {
-    return resolve('ping!')
+    return resolve(`Pinged for ${request.url}`)
   })
 }
 
 const handler = async (req, res) => {
 
   try {
+
     let content = await contentMaker()
 
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('X-Promising', 'yes')
-    res.end(content, 'utf-8')
+
+    res.end(content, 'utf-8', () => {
+      console.log('done & gone')
+    })
 
   } catch (err) {
     res.statusCode = 500
@@ -35,7 +40,7 @@ const server = http.createServer(handler)
 server.listen(port, host)
 
 server.on('request', async (req, res) => {
-  console.log(await pinger())
+  console.log(await pinger(req))
 })
 
 server.on('listening', () => {
