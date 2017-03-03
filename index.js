@@ -1,6 +1,6 @@
 const http = require('http')
 
-const contentMaker = () => {
+const contentMaker = function contentMaker () {
   return new Promise((resolve, reject) => {
     return resolve(JSON.stringify({ "cluttered": "box" }))
   })
@@ -8,14 +8,17 @@ const contentMaker = () => {
 
 const handler = async (req, res) => {
   try {
+    console.time('served')
 
-    let content = await contentMaker()
+    const content = await contentMaker()
 
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('X-Promising', 'yes')
     res.setHeader('Content-Length', content.length)
 
-    res.end(content)
+    res.end(content, 'utf-8', function () {
+      console.timeEnd('served')
+    })
 
   } catch (err) {
     res.statusCode = 500
