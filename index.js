@@ -2,7 +2,7 @@ const http = require('http')
 
 const contentMaker = function contentMaker () {
   return new Promise((resolve, reject) => {
-    return resolve(JSON.stringify({ "cluttered": "box" }))
+    return resolve(JSON.stringify({ "cluttered": "square" }))
   })
 }
 
@@ -12,7 +12,7 @@ const handler = async (req, res) => {
 
     const content = await contentMaker()
 
-    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
     res.setHeader('X-Promising', 'yes')
     res.setHeader('Content-Length', content.length)
 
