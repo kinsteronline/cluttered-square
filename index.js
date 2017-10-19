@@ -1,10 +1,7 @@
 const http = require('http')
 
-const contentMaker = function contentMaker () {
-  return new Promise((resolve, reject) => {
-    return resolve(JSON.stringify({ "cluttered": "square" }))
-  })
-}
+// illustration
+const contentMaker = () => Promise.resolve(JSON.stringify({ "clustered": "square" }))
 
 const handler = async (req, res) => {
   try {
@@ -26,7 +23,6 @@ const handler = async (req, res) => {
 
   }
 }
-
 
 const port = parseInt(process.env.WWW_PORT, 10) || 9000
 const host = process.env.WWW_HOST || '127.0.0.1'
